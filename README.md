@@ -4,7 +4,7 @@ It has been extended to reliably run in Docker.
 
 ## Usage
 0. Install [Docker Compose](https://docs.docker.com/compose/install/).
-1. Download the [Pretrained Model](https://drive.google.com/file/d/0B6l9O8aWij8fVEIxZjQ4ejRzVmc/view?usp=sharing) and put it under ```./inference/salience_model/```
-2. Put the images you want to analyze into ```./input/```
-3. Run ```docker-compose up```
-4. You will find the output under ```./output/```
+1. Download the [Pretrained Model](https://drive.google.com/file/d/0B6l9O8aWij8fVEIxZjQ4ejRzVmc/view?usp=sharing) and put it under ```./model/salience_model/```.
+2. Run ```docker-compose up -d```.
+4. Go to the [Web UI](http://localhost:8501).
+5. Run ```docker-compose down``` to stop the UI.

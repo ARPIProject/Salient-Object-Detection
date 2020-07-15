@@ -1,13 +1,12 @@
 FROM python:3.8.3-buster
 
-RUN mkdir /output && mkdir /input
-VOLUME /input
-VOLUME /output
+EXPOSE 8501
 
 RUN pip install pipenv
 COPY Pipfile* ./
 RUN pipenv install --deploy
 
-COPY inference ./inference
+COPY model /model
+WORKDIR /model
 
-ENTRYPOINT ["pipenv", "run", "python", "./inference/inference.py"]
+ENTRYPOINT ["pipenv", "run", "streamlit", "run", "run.py"]

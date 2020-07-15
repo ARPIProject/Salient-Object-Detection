@@ -1,7 +1,3 @@
 .idea/**
 /**/.DS_Store
-/inference/salience_model/model.ckpt-200.data-00000-of-00001
-input/*
-!input/.gitkeep
-output/*
-!output/.gitkeep
+/model/salience_model/model.ckpt-200.data-00000-of-00001
