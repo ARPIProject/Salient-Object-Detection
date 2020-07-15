@@ -8,7 +8,6 @@ g_mean = np.array(([126.88, 120.24, 112.19])).reshape([1, 1, 3])
 
 
 def main():
-	print(os.getcwd())
 	input_folder = "./input"
 	output_folder = "./output"
 
@@ -19,8 +18,9 @@ def main():
 
 		for filename in [s for s in os.listdir(input_folder) if not s == '.gitkeep']:
 			file_path = os.path.join(input_folder, filename)
-			img = np.asarray(Image.open(file_path).resize((320, 320), resample=Image.NEAREST).convert('RGB')).reshape(
-				(1, 320, 320, 3))
+			img = np.asarray(Image.open(file_path).resize((320, 320), resample=Image.NEAREST).convert('RGB'))
+			img = img - g_mean
+			img = img.reshape((1, 320, 320, 3))
 			feed_dict = {tf.compat.v1.get_collection('image_batch')[0]: img}
 			detection = sess.run(tf.compat.v1.get_collection('mask')[0], feed_dict=feed_dict)
 			Image.fromarray(detection[0].reshape(320, 320) * 255).convert('RGB').save(os.path.join(output_folder, filename))
